@@ -5,13 +5,13 @@ try it.
 
 
 ## requirements
-  Sublime Text v4
-  AutoHotkey
+  Sublime Text v4.
+  AutoHotkey.
 
 
 ## installation
-  place the 'AutoHotkey' folder at './Data/Packages'
-  place the 'Default (Windows).sublime-keymap' file at './Data/Packages/User'
+  place the 'AutoHotkey' folder at './Data/Packages'.
+  place the 'Default (Windows).sublime-keymap' file at './Data/Packages/User'.
 
 
 ## usage
