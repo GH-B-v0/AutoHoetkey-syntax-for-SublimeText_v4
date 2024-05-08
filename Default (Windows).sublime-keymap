@@ -1,0 +1,17 @@
+[
+
+	//---execution of view file with autohotkey executables
+	{"keys": ["alt+keypad0", "alt+keypad_period"]	, "command": "exc_autohotkey_waitcmd", "args":{"version":null}},
+	{"keys": ["ctrl+keypad0", "ctrl+keypad0"] 		, "command": "exc_autohotkey_waitcmd", "args":{"version":"default", "switches":" /Debug"}},
+	{"keys": ["alt+keypad0", "alt+keypad0"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"default"}},
+	{"keys": ["alt+keypad0", "alt+keypad1"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"U64"}},
+	{"keys": ["alt+keypad0", "alt+keypad2"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"U32"}},
+	{"keys": ["alt+keypad0", "alt+keypad3"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"A32"}},
+	{"keys": ["alt+keypad0", "alt+keypad4"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"dllv2_64"}},
+	{"keys": ["alt+keypad0", "alt+keypad5"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"dllv2_64_MT"}},
+	{"keys": ["alt+keypad0", "alt+keypad6"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"dllv2_32"}},
+	{"keys": ["alt+keypad0", "alt+keypad7"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"dllv2_32_MT"}},
+	{"keys": ["alt+keypad0", "alt+keypad8"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"H_64"}},
+	{"keys": ["alt+keypad0", "alt+keypad9"]			, "command": "exc_autohotkey_waitcmd", "args":{"version":"H_32"}},
+
+]
