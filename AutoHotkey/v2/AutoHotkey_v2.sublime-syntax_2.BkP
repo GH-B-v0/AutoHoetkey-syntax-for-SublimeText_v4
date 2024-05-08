@@ -1,0 +1,291 @@
+%YAML 1.2
+# http://www.sublimetext.com/docs/3/syntax.html
+# Name:     Sublime Text 3 AutoHotkey 2 Syntax Highlighting
+# Author:   Flipeador (https://autohotkey.com/boards/memberlist.php?mode=viewprofile&u=60315) | flipeador@gmail.com
+# URL:      https://github.com/flipeador
+# Date:     20200803
+#
+#
+# Algunos usos de las expresiones regulares (regex):
+#
+# Greedy quantifier            = Un grupo tan grande como sea posible.
+# Lazy quantifier              = El grupo más pequeño posible.
+# +-------------------+-----------------+---------------------------+++------------------------+-------------+------------------------+
+# | Greedy quantifier | Lazy quantifier |        Descripción        ||| Haystack               | NeedleRegEx | Resultado              |
+# +-------------------+-----------------+---------------------------+++------------------------+-------------+------------------------+
+# | *                 | *?              | Cero o más veces          ||| <em>Hello World</em>   | (<.+>)      | <em>Hello World</em>   |
+# | +                 | +?              | Una o más veces           ||| <em>Hello World</em>   | (<.+?>)     | <em>                   |
+# | ?                 | ??              | Cero o una vez.           ||| abcdefghijklmc         | (a.*c)      | abcdefghijklmc         |
+# | {n}               | {n}?            | Exactamente n veces       ||| abcdefghijklmc         | (a.*?c)     | abc                    |
+# | {n,}              | {n,}?           | Por lo menos n veces      ||| https://x:x.xxx        | (.*:)       | https://x:             |
+# | {n,m}             | {n,m}?          | De n a m veces            ||| https://x:x.xxx        | (.*?:)      | https:                 |
+# +-------------------+-----------------+---------------------------+++------------------------+-------------+------------------------+
+#
+# +--------------------+--------------------------------------------------------------------------------------------------------------+
+# | RegEX              | Descripción                                                                                                  |
+# +--------------------+--------------------------------------------------------------------------------------------------------------+
+# | ?<!                | Coincidir si no empieza por                                                                                  |
+# | ?<=                | Coincidir si empieza por                                                                                     |
+# | ?!=                | Coincidir si no termina por                                                                                  |
+# | ?=                 | Coincidir si termina por                                                                                     |
+# | \b    \b           | Coincidir solo palabras completas                                                                            |
+# | \s                 | Representa un espacio: \s \t \r \n             \S representa lo contrario                                    |
+# | \d                 | Representa un dígito 0-9                       \D representa lo contrario                                    |
+# | \w                 | Representa una letra a-z A-Z o un dígito 0-9   \W representa lo contrario                                    |
+# | |                  | Separa varias alternativas                                                                                   |
+# | [     ]            | Incluye uno de los caracteres especificados                                                                  |
+# | [^    ]            | Excluye uno de los caracteres especificados                                                                  |
+# | (     )            | Agrupa caracteres y se utiliza para extraer información                                                      |
+# | (?:   )            | Agrupa caracteres pero se anula la captura                                                                   |
+# | ^                  | Indica el inicio de la línea                                                                                 |
+# | $                  | Indica el final de la línea                                                                                  |
+# | ?i:                | Sin distinción de mayúsculas y minúsculas                                                                    |
+# +--------------------+--------------------------------------------------------------------------------------------------------------+
+#
+# Caracteres especiales:
+#   \ . * ? + [ { | ( ) ^ $
+#
+# Referencias:
+#   https://www.sublimetext.com/docs/3/syntax.html
+#   http://www.pcre.org/pcre.txt
+#   http://www.regular-expressions.info/
+#   http://regexr.com/
+#   https://regexone.com/lesson/
+#   https://www.adictosaltrabajo.com/tutoriales/regexsam/
+#   https://codepen.io/jakealbaugh/post/regex-in-sublime-text
+---
+
+
+# #####################################################################
+# Header                                                              #
+# #####################################################################
+name           : AutoHotkey v2
+file_extensions: [ahk, ahk2]
+scope          : source.ahk
+
+
+# #####################################################################
+# Variables                                                           #
+# #####################################################################
+variables:
+  function_list      : 'objfromptr|objptraddref|objfromptraddref|isdigit|isxdigit|isalpha|isupper|islower|isalnum|isspace|istime|objownpropcount|map|strcompare|hotstring|caretgetpos|pause|fileinstall|objcount|string|float|integer|min|max|trayseticon|guictrlfromhwnd|driveunlock|groupactivate|groupadd|groupclose|groupdeactivate|settitlematchmode|setwindelay|tan|statusbarwait|statusbargettext|guifromhwnd|drivegetstatus|drivegetstatuscd|drivegettype|drivegetserial|drivegetlabel|drivegetfilesystem|drivegetspacefree|drivegetcapacity|drivegetlist|driveeject|driveunlock|drivelock|drivesetlabel|controlshowdropdown|controlshow|controlsettab|controlsetexstyle|controlsetstyle|controlsetenabled|controlsetchecked|controlhidedropdown|controlhide|controlgetvisible|controlgettab|controlgetexstyle|controlgetstyle|controlgetselected|controlgetitems|listviewgetcontent|controlgetlinecount|controlgetline|controlgethwnd|controlgetenabled|controlgetcurrentline|controlgetcurrentcol|controlgetchoice|controlgetchecked|controlfinditem|controleditpaste|controldeleteitem|controlchoosestring|controlchoose|controladditem|clipboardall|exitapp|exit|outputdebug|listvars|listlines|edit|winminimizeallundo|winminimizeall|thread|reload|envupdate|coordmode|keyhistory|sendlevel|sendmode|setdefaultmousespeed|setkeydelay|setmousedelay|setcapslockstate|setnumlockstate|setscrolllockstate|setstorecapslockmode|listhotkeys|hotkey|suspend|detecthiddenwindows|detecthiddentext|loadpicture|monitorgetprimary|monitorgetname|monitorgetcount|monitorget|monitorgetworkarea|isobject|isset|islabel|isfunc|isbyref|func|download|shutdown|runas|runwait|run|processwaitclose|processwait|processsetpriority|processclose|processexist|setregview|regwrite|regread|regdelete|regdeletekey|pixelsearch|pixelgetcolor|imagesearch|trim|rtrim|ltrim|substr|strsplit|strreplace|strlen|strlower|strupper|stringcasesense|sort|regexreplace|regexmatch|ord|instr|formattime|format|chr|soundplay|soundbeep|soundgetinterface|soundgetname|soundsetmute|soundgetmute|soundsetvolume|soundgetvolume|setcontroldelay|postmessage|sendmessage|menuselect|controlsettext|menucreate|menubarcreate|menufromhandle|controlsend|controlsendtext|controlmove|controlgettext|controlgetpos|controlgetfocus|controlfocus|controlgetclassnn|controlclick|winwaitclose|winwaitnotactive|winwaitactive|winwait|winshow|winsettitle|winsettranscolor|winsettransparent|winsetregion|winsetexstyle|winsetstyle|winredraw|winsetenabled|winmovetop|winmovebottom|winsetalwaysontop|winrestore|winmove|winminimize|winmaximize|winkill|winhide|wingettitle|wingettext|wingetpos|wingetclientpos|wingetclass|wingetexstyle|wingetstyle|wingettranscolor|wingettransparent|wingetcontrolshwnd|wingetcontrols|wingetminmax|wingetlist|wingetcount|wingetprocesspath|wingetprocessname|wingetpid|wingetidlast|wingetid|winexist|winclose|winactive|winactivatebottom|winactivate|il_destroy|il_add|il_create|tooltip|traytip|onmessage|msgbox|menu|inputbox|sleep|sendtext|settimer|onexit|critical|splitpath|setworkingdir|iniwrite|iniread|inidelete|filesettime|filesetattrib|fileselect|filerecycleempty|filerecycle|fileread|fileopen|filecreateshortcut|fileencoding|filegetshortcut|driveget|fileappend|sysget|sysgetipaddresses|clipwait|envset|envget|dircopy|dircreate|dirmove|dirdelete|dirselect|filedelete|filecopy|filemove|filegetversion|filegettime|filegetsize|filegetattrib|direxist|fileexist|onclipboardchange|dllcall|comcall|numget|numput|callbackcreate|callbackfree|strput|strget|varsetstrcapacity|varsetlength|comobjactive|comobjarray|comobjconnect|comobjget|comobject|comobjflags|comobjquery|comobjtype|objaddref|comobjvalue|objrelease|exception|blockinput|click|controlclick|getkeyname|getkeyvk|getkeysc|getkeystate|keywait|input|inputhook|inputend|mousemove|mouseclick|mouseclickdrag|mousegetpos|sendevent|sendplay|sendinput|send|abs|ceil|dateadd|datediff|exp|floor|log|ln|mod|random|randomseed|round|sqrt|sin|costan|asin|acos|atan|objrawset|objrawget|objgetbase|objsetbase|onerror|type|cos|objbindmethod|array|objpush|objdelete|objgetaddress|objgetcapacity|objinsertat|objlength|objnewenum|objpop|objpush|objremoveat|objsetcapacity|menugethandle|menugetname|hasbase|hasmethod|hasownmethod|hasprop'
+  method_list        : 'show|addtext|addedit|addupdown|addpic|addbutton|addcheckbox|addradio|addddl|addcombobox|addlistbox|addlistview|addtreeview|onevent|addlink|addhotkey|adddatetime|addmonthcal|addslider|addprogress|addgroupbox|addtab3|addstatusbar|addactivex|addcustom'
+  class_methods      : '__new|__delete|__get|__set|__call|__enum'
+  class_properties   : '__item'
+  preprocessor       : 'requires|dllload|suspendexempt|include|includeagain|allowsamelinecomments|clipboardtimeout|errorstdout|hotkeyinterval|hotkeymodifiertimeout|hotstring|iftimeout|if|inputlevel|installkeybdhook|installmousehook|keyhistory|maxhotkeysperinterval|maxthreadsbuffer|maxthreadsperhotkey|maxthreads|menumaskkey|notrayicon|persistent|singleinstance|usehook|warn|winactivateforce'
+  numeric            : '(0(x|X)[0-9a-fA-F]+)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?'
+  operator_assignment: '\:=|\+=|-=|\*=|/=|//=|\.=|\|=|\&=|\^=|\>\>=|\<\<=|\~=|\:\:'
+  keyword_list       : 'super|local|byref|static|global|extends|goto|loop|if|else|return|break|for|while|catch|finally|throw|try|until|continue|switch|case'  # Anywhere.
+  keyword_list2      : 'read|parse|file|reg'  # Loop (disabled).
+  keyword_list3      : 'class'  # Starts with (to differentiate with variable_list).
+  variable_list      : 'buffer|class|array|object|gui|map|a_args|a_initialworkingdir|a_ahkpath|a_ahkversion|a_appdata|a_appdatacommon|a_computername|a_controldelay|a_cursor|a_dd|a_ddd|a_dddd|a_defaultmousespeed|a_desktop|a_desktopcommon|a_detecthiddentext|a_detecthiddenwindows|a_endchar|a_eventinfo|a_fileencoding|a_hour|a_iconfile|a_iconhidden|a_iconnumber|a_icontip|a_index|a_is64bitos|a_isadmin|a_iscompiled|a_iscritical|a_ispaused|a_issuspended|a_keydelay|a_language|a_lasterror|a_linefile|a_linenumber|a_loopfield|a_loopfileattrib|a_loopfiledir|a_loopfileext|a_loopfilefullpath|a_loopfilepath|a_loopfilelongpath|a_loopfilename|a_loopfileshortname|a_loopfileshortpath|a_loopfilesize|a_loopfilesizekb|a_loopfilesizemb|a_loopfiletimeaccessed|a_loopfiletimecreated|a_loopfiletimemodified|a_loopreadline|a_loopregkey|a_loopregname|a_loopregtimemodified|a_loopregtype|a_mday|a_min|a_mm|a_mmm|a_mmmm|a_mon|a_mousedelay|a_msec|a_mydocuments|a_now|a_nowutc|a_numbatchlines|a_ostype|a_osversion|a_priorhotkey|a_priorkey|a_comspec|a_programfiles|a_programs|a_programscommon|a_ptrsize|a_regview|a_screendpi|a_screenheight|a_traymenu|a_allowmainwindow|a_screenwidth|a_scriptdir|a_scriptfullpath|a_scripthwnd|a_scriptname|a_sec|a_space|a_startmenu|a_startmenucommon|a_startup|a_startupcommon|a_stringcasesense|a_tab|a_temp|a_thisfunc|a_thishotkey|a_tickcount|a_timeidle|a_timeidlephysical|a_timesincepriorhotkey|a_timesincethishotkey|a_titlematchmode|a_titlematchmodespeed|a_username|a_wday|a_windelay|a_windir|a_workingdir|a_yday|a_year|a_yweek|a_yyyy|a_clipboard|errorlevel|true|false'
+  operator_logical   : '!|<|>|>=|<=|=|==|=>|<>|!=|\?|:'
+  operator_word      : 'or|and'
+  operator_word2     : '\|\||&&'
+  operator_word3     : 'not|is|in'
+  operator_arithmetic: '\*|/|\+|-'
+  operator_bitwise   : '~|<<|>>|&|\^|\|'
+
+
+# #####################################################################
+# Contexts                                                            #
+# #####################################################################
+contexts:
+  # ---------------------------------------------------------------------
+  # main                                                                -
+  # ---------------------------------------------------------------------
+  main:
+    # Braces: [] {} ()
+    - match: '[\[\]\{\}\(\)]'
+      scope: meta.braces.ahk
+
+    # Constant Numeric
+    - match: \b({{numeric}})\b
+      scope: constant.numeric.ahk
+
+    - match: \b(?<!\.)\d+(?i:\w+)\b
+      scope: syntax.error.ahk
+
+    # Function call
+    - match: \b(?<!\.)\d+(?i:\w*)(?=\()\b
+      scope: syntax.error.ahk
+
+    - match: \b(?<!\.)(?i:{{function_list}})(?=\()\b
+      scope: meta.function.ahk
+
+    # Function call without parentheses
+    - match: ^\s*(\w+(?=,))
+      scope: syntax.error.ahk
+
+    - match: ^\s*(?i:{{function_list}})\s+(;.*)?
+      scope: meta.command.ahk
+      captures:
+        1: comment.line.ahk
+
+    # Class
+    - match: \b(?<!\.)(?i:{{class_properties}})(?=\[)\b
+      scope: meta.classfunction.ahk
+
+    - match: \b(?<!\.)(?i:{{class_methods}})(?=\()\b
+      scope: meta.classfunction.ahk
+
+    # Preprocessor
+    - match: ^\s*#\b(?i:{{preprocessor}})\b
+      scope: meta.preprocessor.ahk
+
+    # In-line comments
+    - match: (\s+)(;.*)$
+      scope: comment.line.ahk
+
+    - match: ^(;.*)$
+      scope: comment.line.ahk
+
+    - match: (?<!\s)(;.*)$
+      scope: syntax.error.ahk
+
+    # Block Comment
+    - match: /\*
+      scope: punctuation.definition.comment.ahk
+      push:
+        - meta_scope: comment.block.ahk
+        - match: \*/
+          scope: punctuation.definition.comment.ahk
+          pop: true
+
+    # Keyword Control ^((\s|})+|)
+    #- match: ^\s*(?i:(loop)\s+\b({{keyword_list2}})\b)(.*)  # Loop Read|Parse|File|Reg, ...
+    #  captures:
+    #    1: keyword.control.ahk         # (Loop)
+    #    2: keyword.operator.word3.ahk  # (Read|Parse|File|Reg)
+
+    - match: \b(?<!\.)(?i:{{keyword_list}})\b
+      scope: keyword.control.ahk
+
+    - match: ^\s*(?<!\.)(?i:{{keyword_list3}})\b
+      scope: keyword.control.ahk
+
+    # Constant Language
+    - match: \b(?<!\.)(?i:{{variable_list}})\b
+      scope: constant.language.ahk
+
+    # Keyword Operator Assignment
+    - match: '{{operator_assignment}}'
+      scope: keyword.operator.assignment.ahk
+
+    # Keyword Operator Arithmetic
+    - match: '(\*|\+|-){3,}|\s+(\+|-){2,}\s+'  #(\.){2,}|
+      scope: syntax.error.ahk
+
+    - match: '{{operator_arithmetic}}'
+      scope: keyword.operator.arithmetic.ahk
+
+    # Keyword Operator Word
+    - match: \b(?<!\.)(?i:{{operator_word}})\b
+      scope: keyword.operator.word.ahk
+
+    - match: \b(?<!\.)(?i:{{operator_word3}})\b
+      scope: keyword.operator.word3.ahk
+
+    - match: '(\||&){3,}'
+      scope: syntax.error.ahk
+
+    - match: '{{operator_word2}}'
+      scope: keyword.operator.word.ahk
+
+    # Keyword Operator Bitwise
+    - match: '(<|>){3,}|(\^|~){2,}'
+      scope: syntax.error.ahk
+
+    - match: '{{operator_bitwise}}'
+      scope: keyword.operator.bitwise.ahk
+
+    # Keyword Operator logical
+    - match: '!{3,}'
+      scope: syntax.error.ahk
+
+    - match: '={4,}'
+      scope: syntax.error.ahk
+
+    - match: '{{operator_logical}}'
+      scope: keyword.operator.logical.ahk
+
+    # Variable Definition
+    - match: "%"
+      scope: punctuation.definition.variable.ahk
+
+    # Variable Function (method)
+    #- match: \b(?<=\.)(?i:read|write|readline|writeline|readuint|readint|readint64|readuint64|readshort|readushort|readchar|readuchar|readdouble|readfloat|writeuint|writeint|writeint64|writeuint64|writeshort|writeushort|writechar|writeuchar|writedouble|writefloat|rawread|rawwrite|seek|tell|close)(?=\()\b
+    #  scope: variable.function.ahk
+
+    #- match: \b(?<=\.)(?i:insertat|removeat|push|pop|delete|minindex|maxindex|length|setcapacity|getcapacity|getaddress|_newenum|haskey|clone)(?=\()\b
+    #  scope: variable.function.ahk
+
+    #- match: \b(?<=\.)(?i:bind)(?=\()\b
+    #  scope: variable.function.ahk
+
+    - match: \b(?<=\.)(?i:{{method_list}})(?=\()\b
+      scope: meta.function.ahk
+
+    # Variable Member (property)
+    #- match: '\b(?<=\.)(?i:pos|position|length|ateof|encoding|handle)(?!\[|\(|\.)\b'
+    #  scope: variable.other.member.ahk
+
+    - match: '\b(?<=\.)(?i:__class)(?!\[|\(|\.)\b'
+      scope: variable.other.member.ahk
+
+    - match: '\b(?i:this|base)\b' # (?=\.)
+      scope: variable.other.member2.ahk
+
+    # Entity Namespace (Hotkeys)
+    - match: ^\s*((?!"|;|{).)+(::)
+      scope: entity.name.namespace.ahk
+      captures:
+        1: entity.name.namespace.ahk  # label
+        2: entity.name.namespace2.ahk  # ::
+
+    # Swich-case - Default label
+    - match: ^\s*(?i:default)(:)
+      scope: keyword.control.ahk
+      captures:
+        1: keyword.operator.logical.ahk
+
+    # Entity Label
+    - match: ^\s*(\w+)\s+(:)(?!=).*$  # label :
+      scope: syntax.error.ahk
+    - match: ^\s*(\w+)(:)\s*(;.*)?$  # label:
+      scope: entity.name.label.ahk
+      captures:
+        3: comment.line.ahk  # " ;.*"
+
+    # Strings
+    - match: (')
+      push: string_single
+
+    - match: (")
+      push: string_double
+
+    #- match: \w+\.(\w+).*
+    #  meta_scope: scope.method.ahk
+
+
+  # ---------------------------------------------------------------------
+  # string_double - double quotation marks                              -
+  # ---------------------------------------------------------------------
+  string_double:
+    - meta_content_scope: string.quoted.double.ahk  # "(string)"
+    - meta_scope: string.quote.double.ahk           # (")string(")
+    - match: \`.                                    # Escape character
+      scope: constant.character.escape.ahk
+    - match: (")(?!")|^                             # String Reg-Ex
+      pop: true
+
+  # ---------------------------------------------------------------------
+  # string_single - single quotation marks                              -
+  # ---------------------------------------------------------------------
+  string_single:
+    - meta_content_scope: string.quoted.single.ahk  # '(string)'
+    - meta_scope: string.quote.single.ahk           # (')string(')
+    - match: \`.                                    # Escape character
+      scope: constant.character.escape.ahk
+    - match: (')(?!')|^                             # String Reg-Ex
+      pop: true

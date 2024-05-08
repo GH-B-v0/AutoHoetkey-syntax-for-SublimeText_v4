@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[]]>
+${1:}
+${1/./	/gim}	/*
+
+		na_doc
+
+	*/
+</content>
+	<tabTrigger>nodoc</tabTrigger>
+	<scope>source.ahk</scope>
+	<description>na_doc for fns without documentation</description>
+</snippet>
+
+<!-- 
+
+comments
+	put the trigger at the end of the line
+	before desired line for inserting the content
+	e.g.
+
+	some_fn(params)nodoc
+		{
+			Return 0
+		}
+
+-->

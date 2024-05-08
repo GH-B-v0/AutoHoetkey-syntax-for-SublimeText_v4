@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[]]>
+
+
+
+while h:=winexist("ahk_class #32770")
+{
+	wingettext, txt, % "ahk_id " h
+	all .= txt
+	winclose,% "ahk_id " h
+}
+
+msgbox % clipboard:=all
+
+
+
+</content>
+	<tabTrigger>wincloseall</tabTrigger>
+	<scope>source.ahk</scope>
+	<description>close windows of same criteria</description>
+</snippet>

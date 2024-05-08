@@ -1,0 +1,87 @@
+﻿<snippet>
+	<content><![CDATA[]]>
+
+${1:; usage
+	; simple clickbot (hold lshift and press the 2 key to toggle rapid mouse clicks)
+	; _HotKey(, "ahk_class FFwinClass")
+	_HotKey("~LShift & 2",, "T2")
+	; _HotKey()
+	~LShift & 2::(_ := !_) ? call_periodic_toggle(func("_click")) : call_periodic_toggle()
+	~Esc::return
+	!Esc::ExitApp
+}
+
+
+${2:; smoothly sends to even a backgorund/hidden window
+	;direct_call
+	_keys := "-buy tomes"
+	_wint := "ahk_exe war3.exe ahk_class Warcraft III"
+	q::
+	if not hwnd := WinExist(_wint)
+		return
+	Loop, 10
+		Win_MessageKeys(_keys, hwnd, "{Enter\}", 2)
+	, _Sleep(5000)
+	return
+}
+
+
+${3:	; timed_funcobj
+	~q::SetTimer
+		, warcraft_messenger ; lookup the library for this function
+		; , % bind("Win_MessageKeys", _keys, hwnd, "{Enter\}", 2)
+		, % (_toggle := !_toggle) ? 300 : "Off"
+}
+
+
+
+
+${4:; targets the active window
+key_bot(keys, interval_ms){
+	SendInput, % keys
+	Sleep, % interval_ms
+	tooltip % a_now
+}
+
+
+${5:~w::fn_set_timeout_toggle(0, "key_bot", "{Enter\}-buy tomes{Enter\}", 200)
+}
+
+
+
+
+
+${6:; targets the active window
+SendMode, Input
+~e::ClickBot("{enter\}-buy tomes{enter\}", 300)
+ClickBot(SendKey := "", Interval_MS := -1)
+	{
+
+		Static Toggle, K, T
+
+		If (SendKey = -1) || !(Toggle := !Toggle)
+			Return Toggle := K := T := ""
+
+		K := SendKey
+		T := Interval_MS
+		SetTimer, ClickBot_FireUp, -1
+		Return
+
+		ClickBot_FireUp:
+			While Toggle
+			{
+
+				Send, % K
+				Sleep, % T
+
+			\}
+			Return
+
+	\}
+}
+
+</content>
+	<tabTrigger>clicker</tabTrigger>
+	<scope>source.ahk</scope>
+	<description>toggling click bot</description>
+</snippet>

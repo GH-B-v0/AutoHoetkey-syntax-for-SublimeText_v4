@@ -1,0 +1,38 @@
+{
+	// "color_scheme": "${packages}/AutoHotkey/AutoHotkey.sublime-color-scheme",
+	"color_scheme": "AutoHotkey.sublime-color-scheme",
+	"word_separators": "./\\()\"'-:,.;<>~!%^&*|+=[]{}`~?",
+	
+	// stop the auto-completion from appearing within comment and string
+	// "auto_complete_triggers":[{"selector": "source.ahk - string - comment", "characters": "."}],
+	// "auto_complete_triggers":[{"selector": "source.ahk"}],
+
+	"extensions":
+	[
+		"_",
+		"#_define",
+		"_IPC_host_SFID_",
+	],
+
+
+	// Set here path to AutoHotkey.exe and Ahk2Exe.exe executables
+	"AutoHotKeyExePath":
+	{
+		"default": "C:\\Program Files\\AutoHotkey\\AutoHotkey.exe",
+		"lexikos_A32": "C:\\Program Files\\AutoHotkey\\AutoHotkeyA32.exe",
+		"lexikos_U32": "C:\\Program Files\\AutoHotkey\\AutoHotkeyU32.exe",
+		"lexikos_U64": "C:\\Program Files\\AutoHotkey\\AutoHotkeyU64.exe",
+
+	},
+
+	"Ahk2ExePath":
+	{
+		"default": "C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe",
+		"default_x86": "C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe",
+
+		"default_portable": "C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe",
+		"classic_portable": "C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe",
+		"lexikos_portable": "C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe",
+	},
+
+}
