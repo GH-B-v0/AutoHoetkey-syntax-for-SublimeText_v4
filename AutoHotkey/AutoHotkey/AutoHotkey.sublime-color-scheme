@@ -1,0 +1,281 @@
+{
+	"author": "Cain",
+	"name": "AutoHotkey",
+	"colorSpaceName": "sRGB",
+	"globals":
+	{
+		"background": "#26272A",
+		"foreground": "#EEFFFFFF",
+
+		"line_highlight": "#783535", // C83838
+		"find_highlight": "#2D75CD",
+		"find_highlight_foreground": "#EEFFFFFF",
+
+		"invisibles": "#CECECE",
+		"inactive_selection": "#616161DD",
+		"selection": "#4A74DFDD",
+		"selection_border": "#61616150",
+		"selection_border_width": "2.5",
+		"selection_corner_style": "round",
+		"selection_corner_radius": "3",
+		"selection_foreground": "#FFFFFFFF",
+		"inactive_selection_foreground": "#FFFFFFFF",
+
+		"bracket_contents_background": "#f00",
+		"bracket_contents_options": "foreground",
+		"bracket_contents_foreground": "#81A5E0",
+		"tags_options": "foreground",
+		"tags_foreground": "#81A5E0",
+
+		"accent": "#FF0000",
+		"caret": "#FFCC00",
+		"block_caret": "#FFCC00",
+		"minimap_border": "#FFCC00",
+		"shadow": "#E914D988",
+		"shadow_width": "32",
+
+		"guide": "#67676750",
+		"active_guide": "#FFFF00",
+		"stack_guide": "#FFFFB0",
+
+		"gutter": "#181818",
+		"gutter_foreground": "#2D75CD",
+
+		"misspelling": "#FFFF00",
+		"fold_marker": "#00FF00",
+
+
+	},
+	"rules":
+	[
+
+//---general scopes
+
+/*
+		{
+			"name": "Comment",
+			"scope": "comment",
+			"font_style": "italic",
+		//	"foreground_adjust": "alpha(0.3)"
+			"foreground": "#4A4A4A"
+		},
+*/
+
+
+		{
+			"scope": "keywords_uninterpreted.ahk",
+			"foreground": "#55552b"
+		},
+		{
+			"name": "Keyword",
+			"scope": "keyword, storage",
+			"foreground": "#99887766"
+		},
+		{
+			"name": "String",
+			"scope": "string",
+			"foreground": "#EEFFFFFF"
+		},
+		{
+			"name": "Number",
+			"scope": "constant.numeric",
+			"foreground": "#7F00FF",
+			"font_style": "bold italic"
+		},
+		{
+			"scope": "keyword.control.character-class",
+			"foreground": "#FF5370"
+		},
+		{
+			"scope": "meta-function.definition.character-class, property.control.character-class",
+			"foreground": "#A03F75"
+		},
+
+		{
+			"scope": "constant",
+			"foreground": "#80CBC4"
+		},
+		{
+			"scope": "string, keyword.operator.quantifier",
+			"foreground": "#F9355A"
+		},
+		{
+			"scope": "constant.character.escape",
+			"foreground": "#FFC400"
+		},
+		{
+			"scope": "source - punctuation - keyword",
+			"foreground": "#EEFFFFFF"
+		},
+
+		{
+			"scope": "dynamic.expression.ahk",
+			// "foreground": "#FF4455FF"
+			"foreground": "#DC143CFF"
+		},
+
+
+
+
+
+
+//---BEGIN of file extension specific color scheme rules
+		{
+			"scope": "source.ahk",
+			"foreground": "#EEFFFFFF"
+		},
+
+
+		{
+			"scope": "comment.line.ahk, comment.block.ahk, comment.line.semicolon.functionline.ahk, comment.line.semicolon.label.ahk",
+			"foreground": "#9A9A9A" //4A4A4A
+		},
+
+
+		{
+			"scope": "punctuation.definition.equals.ahk, keyword.operator.arithmetic.ahk",
+			"foreground": "#FBE239"
+		},
+		{
+			"scope": "punctuation.ahk",
+			"foreground": "#EE9944"
+		},
+		{
+			"scope": "keyword.control.import.ahk, preprocessordirective.ahk, directive.preprocessordirective.ahk",
+			"foreground": "#723838"
+		},
+		{
+			"scope": "i_keyword.control.import.ahk",
+			"foreground": "#880"
+		},
+		{
+			"scope": "importline.ahk",
+			"foreground": "#FFCFAF"
+		},
+		{
+			"scope": "entity.name.section.namespace.ahk",
+			"foreground": "#088"
+		},
+		{
+			"scope": "keyword.multi_purpose.ahk",
+			"foreground": "#FE6B6F"
+		},
+		{
+			"scope": "params.language.builtin.ahk,user_def_params.language.builtin.ahk",
+			"foreground": "#E2A670"
+		},
+		{
+			"scope": "version.language.builtin.ahk",
+			"foreground": "#4BFCA4"
+		},
+
+
+
+		{
+			"scope": "constant.numeric.ahk",
+			"foreground": "#0AC5B1"
+		},
+		{
+			"scope": "variables.language.builtin.ahk",
+			"foreground": "#016432"
+		},
+		{
+			"scope": "constant.language.builtin.ahk",
+			"foreground": "#CD853F"
+		},
+		{
+			"scope": "support.function.ahk, keyword.control.ahk, supporter.function.ahk",
+			"foreground": "#FFFF53"
+		},
+		{
+			"scope": "invalid.deprecated.commands.ahk",
+			"foreground": "#FFFFAA"
+		},
+		{
+			"scope": "entity.name.function.ahk, entity.name.function_call_direct.ahk",
+			"foreground": "#4480FF" // #C792EA
+		},
+		{
+			"scope": "string.function.arguments.ahk",
+			"foreground": "#96AC88"
+		},
+		{
+			"scope": "entity.name.label.ahk",
+			"foreground": "#76763A"
+		},
+		{
+			// "scope": "entity.name.hotkey.ahk, constant.language.hotkey.ahk",
+			"scope": "entity.name.hotkey.ahk",
+			"foreground": "#016361"
+		},
+		{
+			"scope": "punctuation.colon.double.ahk, punctuation.colon.single.ahk",
+			"foreground": "#CC583C"
+		},
+		{
+			"scope": "options.hotstring.ahk",
+			"foreground": "#00FF00"
+		},
+		{
+			"scope": "trigger.hotstring.ahk, data.hotstring.ahk",
+			"foreground": "#DDBC77"
+		},
+		{
+			"scope": "string.quoted.double.ahk, punctuation.definition.string.ahk",
+			"foreground": "#FF8000"
+		},
+		{
+			"scope": "constant.character.escape.ahk",
+			"foreground": "#D5C8D1"
+		},
+		{
+			"scope": "punctuation.definition.variable.percent.ahk",
+			"foreground": "#6CBE50"
+		},
+		{
+			"scope": "my_custom_keywords.control.ahk",
+			"foreground": "#00f"
+		},
+		{
+			"scope": "options.continuation.string.ahk",
+			"foreground": "#497"
+		},
+
+		{
+			"scope": "constant.handle.ahk",
+			"foreground": "#7373BF"
+		},
+		{
+			"scope": "qsl.ahk",
+			"foreground": "#FF0"
+		},
+
+		{
+			"scope": "sub_commands.commands.ahk",
+			"foreground": "#C1876A"
+		},
+
+
+		{
+			"scope": "constant.datatype.basic.ahk",
+			"foreground": "#FA8FF8"
+		},
+
+
+
+
+/*
+
+		// this one makes the remaining of the first line of the function declaration string colored
+		{
+			"scope": "functionline.ahk",
+			"foreground": "#0D00FF"
+		}
+
+
+*/
+
+
+
+	]
+}

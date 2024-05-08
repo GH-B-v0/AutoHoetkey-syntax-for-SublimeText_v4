@@ -1,0 +1,80 @@
+<snippet>
+    <content><![CDATA[]]>${1:; #1 expression syntax (recommended)
+    a_var := ": - )"
+    text := "
+        (LTrim RTrim0 Com Join`n %
+        variable references such as %a_var% are not resolved. ; comment
+        Instead, specify variables as follows: ; comment
+        " A_Now " ; commment
+        )"
+
+
+
+    ; expression syntax with associative array
+    fn_task(a,b,c)
+        {
+            return a . b . c
+        \}
+
+    arr :=
+        (LTrim Com Join,
+        {   _   : 0
+        ;
+        ; note that empty lines must be commented
+        ;
+            0   : v_1 := "really"           ; comment
+            1   : v_2 := 44                 ; comment
+            2   : fn_task(v_1, v_2, 666)    ; comment
+        ;
+            _   : 0 \}
+        )}
+
+${2:; #2 assignment syntax (deprecated)
+    text = 
+        (LTrim RTrim0 Com Join`n ; %
+
+        Line one                                    ; comment
+        ;
+        `; Line two has escaped comment char        ; comment
+        ;
+        ;
+        ; line 3 has right padding (it must not contain comment in order to be accounted in)
+        Line three               
+        ;
+        ;
+        Line five   `%A_UserName`%
+        Line six    %A_UserName%
+
+        )
+
+
+
+    ; assignment syntax (json like string)
+    html_colors=
+        (LTrim Com Join,
+        { couples : [0x2385B
+            0x2385B8
+            0x48564
+            0x418447
+            0x091ff
+            0x00fF91
+            0x35598
+            0x445547] \}
+        )}
+
+clipboard := text
+    . "`n-------`n`n`n`n" html_colors
+    . "`n-------`n`n`n`n" arr.2
+
+${3:; #3 command continuation syntax
+    MsgBox,64,Hello, ; The trailing comma is required in this case.
+        (LTrim Com Join`n
+        Line 1 of the text.
+        Line 2 of the text. By default, a linefeed (`n) is present between lines.
+        ), 1
+}
+</content>
+    <tabTrigger>cnt</tabTrigger>
+    <scope>source.ahk</scope>
+    <description>continuation section templates string / array </description>
+</snippet>

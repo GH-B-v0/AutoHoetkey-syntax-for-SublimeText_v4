@@ -1,0 +1,159 @@
+<snippet>
+	<content>; precision
+	count := 1000
+	t0 := tic()
+	loop, % count
+	{
+		${2:hex(A_Index)}
+	}
+	t1 := tic() - t0
+
+
+	t0 := tic()
+	loop, % count
+	{
+		${3:hex_(A_Index)}
+	}
+	t2 := tic() - t0
+	z := t1 "`n" t2 "`n" round(t1 > t2 ? t1 / t2 : t2 / t1, 4) (t1 > t2 ? " fn_2()" : " fn_1()")
+
+${1:
+
+
+fn_1(ByRef a := 0)
+	{
+		return 0
+	\}
+
+fn_2(ByRef a := 0)
+	{
+		i := 0
+		return 0
+	\}
+
+s := range(9)
+qpc_2fn("fn_1", "fn_2", s, 1000 * 100)
+
+
+
+
+; precision
+	count := 1000
+	t0 := tic()
+	loop, % count
+		a := hex(A_Index)
+	t1 := tic() - t0
+
+
+	t0 := tic()
+	loop, % count
+		b := hex_(A_Index)
+	t2 := tic() - t0
+	z := t1 "`n" t2 "`n" round(t1 > t2 ? t1 / t2 : t2 / t1, 4) (t1 > t2 ? " fn_2()" : " fn_1()")
+
+
+
+
+; precision
+	x := [], y := []
+	for index, count in [7, 100, 300, 500, 1000, 3000, 5000, 3000, 1000, 500, 300, 100, 7]
+	; for index, count in [1000]
+	{
+		t0 := tic()
+		loop, % count
+			a := hex(A_Index)
+		t1 := tic() - t0
+
+
+		t0 := tic()
+		loop, % count
+			b := hex_(A_Index)
+		t2 := tic() - t0
+		x.push(t1), y.push(t2)
+	\}
+	x := avr(x), y := avr(y)
+	z := (x > y ? "fn_2() is " : "fn_1() is ") round(x > y ? x / y : y / x, 4) " times faster"
+
+}</content>
+	<tabTrigger>bn</tabTrigger>
+	<scope>source.ahk</scope>
+	<description>performance_settings</description>
+</snippet>
+
+
+
+
+
+
+
+
+
+
+
+<snippet>
+	<content>; _1
+
+	; _FileRead(string, f := "C:\_Essential\Shell\AutoHotKey\wholelib.ahk")
+	; var_machine_codes(string), string := SubStr(string_0 := string, 2, -1)
+	pattern_A := "Si)^.*\$"
+	pattern_B := "Si)^.*\$"
+	s := map("chr", range(0x7f-3))
+	z := string := join(filter("str_is_ascii", s))
+
+
+	z := T := []
+	loops := 1000000
+
+
+	i := 0
+	Exc_QPC(1), T.push(0)
+	Loop, % loops
+		++c
+	T[ ++i ] += Exc_QPC()
+
+
+	Exc_QPC(1), T.push(0)
+	Loop, % loops
+		a1 := RegExMatch(s1 := string, pattern_A)
+	T[ ++i ] += Exc_QPC()
+
+
+	Exc_QPC(1), T.push(0)
+	Loop, % loops
+		a2 := RegExMatch(s2 := string, pattern_B)
+	T[ ++i ] += Exc_QPC()
+
+
+	z := [a1 == a2, a1]
+
+	z := RegExMatch("abcD", pattern_A)
+
+
+
+; _2
+
+	/*
+	z = eval(m.c) # execute this line by python on the results to get pythonic output
+	*/
+
+
+	; each loop one fn call
+	s := ["text"]
+	qpc_2fn("dec", "StrLen", s, loops := 1000 * 100)
+
+
+	; each loop one map (multiple) of fn calls
+	s := map("hex", range(0xff + 1))
+	qpc_2fn_mp("dec", "StrLen", s, 100 * 1)
+
+
+
+
+
+</content>
+	<tabTrigger>bench2</tabTrigger>
+	<scope>source.ahk</scope>
+	<description>performance_settings</description>
+</snippet>
+
+<!-- http://www.autohotkey.com/docs/misc/Performance.htm -->

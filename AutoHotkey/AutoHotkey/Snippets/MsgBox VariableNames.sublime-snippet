@@ -1,0 +1,9 @@
+<snippet>
+	<content>MsgBox % ""
+	.			"Variable 1 = "	Variable1
+	.	"`n"	"Variable 2 = "	Variable2
+	.	"`n"	"Variable 3 = "	Variable3</content>
+	<tabTrigger>msg</tabTrigger>
+	<description>MsgBox of variables</description>
+	<scope>source.ahk</scope>
+</snippet>
